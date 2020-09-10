@@ -1,0 +1,9 @@
+{% if username %}
+
+  <a class="nav-link {% if activepage == 'profile' %}active{% endif %}" href="/profile">{{ username }}</a>
+
+{% else %}
+
+  <a class="nav-link {% if activepage == 'login' %}active{% endif %}" href="/login">login</a>
+
+{% endif %}

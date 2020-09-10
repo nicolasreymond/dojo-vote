@@ -1,0 +1,46 @@
+{% extends 'layout.nunjucks' %}
+
+{% block content %}
+      <div class="list-element">
+        <div class="element-header" id="element-{{ item.id }}">
+          <h5>
+            <span class="element-vote-up">
+              <a href="/voteup/{{ item._id }}">
+                <sup>▴</sup>
+              </a>
+            </span>
+            <span class="element-title">{{ item.title }}</span>
+          </h5>
+        </div>
+      <div class="element-details" id="element-details-{{ item.id }}">
+        {{ item.description }}
+      </div>
+      <div class="element-action">
+      <!-- if admin -->
+      <a href="/edit/{{ item.id }}">
+        <sup>edit</sup>
+      </a>
+      |
+      <span class="element-point">{{ item.votes.length if item.votes.length else 0 }} points</span> | submitted by 
+      <span class="element-author">
+        <a href="/profile/{{ item.gitlab_username }}">
+          {{ item.gitlab_username }}
+        </a>
+      </span>
+      on
+      <span class="element-date">
+        {{ item.create_date | date('YYYY-MM-DD HH:mm:ss') }}
+      </span>
+      |
+      <span class="element-comments">
+        <a href="/details/{{ item.id }}">{{ item.comments.length if item.comments.length else 0 }} comments</a>
+      </span>
+      </div>
+      <div class="spacing"></div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Add your comment</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Add a new comment (be kind!)"></textarea>
+      </div>
+      <div class="spacing"></div>
+
+{% endblock %}

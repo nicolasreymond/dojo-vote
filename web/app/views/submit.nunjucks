@@ -1,0 +1,63 @@
+{% extends 'layout.nunjucks' %}
+
+{% block content %}
+  <h5>Submit dojo</h5>
+  <br />
+  <form name="frm-dojos" method="post" action="/post-dojo">
+
+    <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+    <input type="hidden" name="hiddenId" value="{{ item._id }}">
+    <input type="hidden" name="uniqueid" value="{{ uniqueid }}">
+    <input type="hidden" name="username" value="{{ username }}">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input name="title" value="{{ item.title }}" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter topic title">
+      <small id="titleHelp" class="form-text text-muted">Please be succint but accurate</small>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type</label><br />
+      {% for type in types %}
+        <div class="form-check form-check-inline">
+          {% if (type) == (item.type) %}
+            <input class="form-check-input" type="radio" name="type" id="{{ type }}" value="{{ type }}" checked="checked">
+          {% else %}
+            <input class="form-check-input" type="radio" name="type" id="{{ type }}" value="{{ type }}">
+          {% endif %}
+          <label class="form-check-label" for="{{ type }}">{{ type }}</label>
+        </div>
+      {% endfor %}
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Please do select the most appropriate type for this topic.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Description</label>
+      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ item.description }}</textarea>
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Something to help about formatting.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="public">Public</label><br />
+      {% for public in publics %}
+        <div class="form-check form-check-inline">
+        {% if (public) == (item.public) %}
+          <input class="form-check-input" type="radio" name="public" id="{{ public }}" value="{{ public }}" checked="checked">
+        {% else %}
+          <input class="form-check-input" type="radio" name="public" id="{{ public }}" value="{{ public }}">
+        {% endif %}
+          <label class="form-check-label" for="{{ public }}">{{ public }}</label>
+        </div>
+      {% endfor%}
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Please do select the most appropriate public for this topic.
+      </small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+{% endblock %}

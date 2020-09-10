@@ -34,3 +34,10 @@ typings/
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+
+# Import from old .gitignore
+web/node_modules/
+web/.nyc_output
+web/.sass-cache
+data/*

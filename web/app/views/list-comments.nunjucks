@@ -1,0 +1,14 @@
+{% extends 'layout.nunjucks' %}
+
+{% block content %}
+  <h5>Newest comments</h5>
+  <div class="list-elements">
+    <ol>
+    {% for item in items %}
+      <li>{% include "partials/list-comment.nunjucks" %}
+    {% else %}
+      <li>This would display if the 'item' collection were empty
+    {% endfor %}
+    </ol>
+  </div>
+{% endblock %}

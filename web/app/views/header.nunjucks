@@ -1,0 +1,33 @@
+<!-- https://medium.com/wdstack/bootstrap-4-custom-navbar-1f6a2da5ed3c -->
+<nav class="navbar navbar-expand-md bg-light navbar-light py-0">
+  <a href="/" class="navbar-brand">Dojo topics</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse justify-content-stretch" id="navbar">
+    <ul class="navbar-nav">
+      <li class="nav-item py-0">
+        <a class="nav-link {% if activepage == 'newest' %}active{% endif %}" href="/newest">newest</a>
+      </li>
+      <li class="nav-item py-0">
+        <a class="nav-link {% if activepage == 'points' %}active{% endif %}" href="/points">points</a>
+      </li>
+      <li class="nav-item py-0">
+        <a class="nav-link {% if activepage == 'newcomments' %}active{% endif %}" href="/newcomments">comments</a>
+      </li>
+      {% if item.id %}
+        <li class="nav-item py-0">
+          <a class="nav-link {% if activepage == 'details' %}active{% endif %}" href="/details">details</a>
+        </li>
+      {% endif %}
+      <li class="nav-item py-0">
+        <a class="nav-link {% if activepage == 'submit' %}active{% endif %}" href="/submit">submit</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        {% include "partials/login.nunjucks" %}
+      </li>
+    </ul>
+  </div>
+</nav>

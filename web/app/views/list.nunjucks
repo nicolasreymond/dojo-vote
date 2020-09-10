@@ -1,0 +1,13 @@
+{% extends 'layout.nunjucks' %}
+
+{% block content %}
+  <div class="list-elements">
+    <ol>
+    {% asyncEach item in items %}
+      <li>{% include "partials/list-element.nunjucks" %}</li>
+    {% else %}
+      <li>This would display if the 'item' collection were empty</li>
+    {% endeach %}
+    </ol>
+  </div>
+{% endblock %}
