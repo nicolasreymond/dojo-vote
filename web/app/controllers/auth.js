@@ -20,7 +20,7 @@ module.exports = (app) => {
       failureRedirect: '/auth/gitlab-error-temp',
       failureFlash: true
     }),
-    function(req, res) {
+    function (req, res) {
       // Successful authentication, redirect home.
       //res.redirect('/?auth=ok');
       console.log(">>>>>>>>>>> AUTH OK")
@@ -31,7 +31,7 @@ module.exports = (app) => {
     }
   );
 
-  router.get(['/logout', '/logoff', '/exit', '/quit'], function(req, res) {
+  router.get(['/logout', '/logoff', '/exit', '/quit'], function (req, res) {
     req.logout();
     res.redirect('/');
   });

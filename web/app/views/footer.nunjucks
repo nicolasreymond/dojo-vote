@@ -1,10 +1,6 @@
 <footer class="footer text-center text-small">
-  &lt;&gt; with ♥ by 
-  <a href="https://twitter.com/EPFL_dojo">
-    @epfl-dojo
-  </a>
-   — 
-  <a href="https://gitlab.com/epfl-dojo/dojo-elections">
+  &lt;&gt; with ♥ by  
+  <a href="https://gitlab.com/nicolasreymond/dojo-vote">
     sources
   </a>
 </footer>
