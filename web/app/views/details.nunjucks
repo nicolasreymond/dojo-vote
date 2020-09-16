@@ -4,11 +4,8 @@
       <div class="list-element">
         <div class="element-header" id="element-{{ item.id }}">
           <h5>
-            <span class="element-vote-up">
-              <a href="/voteup/{{ item._id }}">
-                <sup>▴</sup>
-              </a>
-            </span>
+            <span class="element-vote-up"><a href="/vote/{{ item.id }}?up"><sup>↑</sup></a></span>
+            <span class="element-vote-down"><a href="/vote/{{ item.id }}?down"><sup>↓</sup></a></span>
             <span class="element-title">{{ item.title }}</span>
           </h5>
         </div>

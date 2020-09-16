@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const DojoSchema = new Schema({
   title: String,
-  point: Number,
   comments: Number,
   nickname: String,
   gitlab_username: String,
