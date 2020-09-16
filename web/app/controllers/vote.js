@@ -30,21 +30,38 @@ module.exports = (app) => {
   router.get('/voteup/:id',
     ensureAuthenticated,
     (req, res, next) => {
-      // TODO:
-      // 1- Get the vote list
-      // 2- Check it the user already voted
-      // 3a- if yes, redirect with message
-      // 3b- if not, add the user's vote
-      if ( typeof(req.params.id) != 'undefined' ) {
+
+
+      if (typeof (req.params.id) != 'undefined') {
+        // 1- Get the vote list
         Dojos.findById(req.params.id, (err, docs) => {
           console.log(docs)
-          docs.votes.push({ vote_date: moment().toISOString(), gitlab_id: req.session.passport.user.gitlab_username })
-          Dojos.update( { _id: req.params.id }, docs, {upsert: true}, function(error, docs) {
+          for (let vote of docs.votes) {
+
+            // 2- Check if the user already voted
+            if (vote.gitlab_id == req.session.passport.user.gitlab_username) {
+              // 3a- if yes, redirect with message
+              res.redirect('/newest?error=alreadyVotup')
+              return
+            }
+
+          }
+
+          // 3b- if not, add the user's vote
+          docs.votes.push({
+            vote_date: moment().toISOString(),
+            gitlab_id: req.session.passport.user.gitlab_username
+          }) 
+          Dojos.update({
+            _id: req.params.id
+          }, docs, {
+            upsert: true
+          }, function (error, docs) {
             if (error) {
               next(error)
             } else {
-              console.log(docs);
-              res.redirect('/details/' + req.params.id);
+              console.log(docs)
+              res.redirect('/details/' + req.params.id)
             }
           })
         })
