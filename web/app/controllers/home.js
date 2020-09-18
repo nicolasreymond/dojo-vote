@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Dojos = mongoose.model('Dojos');
+const User = mongoose.model('User');
 
 module.exports = (app) => {
   const router = express.Router();
@@ -55,18 +56,27 @@ module.exports = (app) => {
 
   router.get(['/newcomments'], (req, res, next) => {
     Dojos.find({}, (err, docs) => {
-
+      debugger;
       res.render('list-comments', {
         title: 'Topics@dojo',
-        items: docs,
+        items: docs.sort((a, b) => (a.votes > b.votes) ? -1 : ((b.votes > a.votes) ? 1 : 0)),
         activepage: 'newcomments',
         // username: req.session.passport.user.gitlab_username || false
       });
 
-    }).sort('-point')
+    })
   });
 
   router.get(['/points'], (req, res, next) => {
+    logg = () => {
+      console.log(req.session.passport +"<---------------------------------------------------------------");
+      if (typeof (req.session.passport) != 'undefined') {
+        console.log(req.session.passport.user.gitlab_username + "<---------------------------------------------------------------");
+        return req.session.passport.user.gitlab_username
+      } else {
+        return false
+      }
+    }
     Dojos.find({}, (err, docs) => {
       if(err) {
         console.log(err)
@@ -75,7 +85,8 @@ module.exports = (app) => {
           title: 'Topics@dojo',
           items: docs,
           activepage: 'points',
-          //username: req.session.passport.user.gitlab_username || false
+          // username: req.session.passport.user.gitlab_username || false
+          username: logg()
         });
       }
     }).sort('votes')
