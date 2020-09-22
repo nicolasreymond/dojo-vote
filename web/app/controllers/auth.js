@@ -5,8 +5,11 @@ const mongoose = require('mongoose');
 var GitLabStrategy = require('passport-gitlab2').Strategy;
 const passport = require('passport');
 
+const app = express();
+
 module.exports = (app) => {
   const router = express.Router();
+  app.use(expressSession())
 
   //router.get('/auth/gitlab', passport.authenticate('gitlab'));
   router.get(['/auth/gitlab', '/login'], passport.authenticate('gitlab', {
@@ -31,9 +34,20 @@ module.exports = (app) => {
     }
   );
 
-  router.get(['/logout', '/logoff', '/exit', '/quit'], function (req, res) {
-    req.logout();
-    res.redirect('/');
+   router.get(['/profile/:id'], function (req, res) {
+     req.logout();
+     res.redirect('/');
+   });
+
+  router.get(['/logout', '/logoff', '/exit', '/quit'], function(req, res) {
+    req.session.destroy(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        req.logout();
+        res.redirect('/');
+      }
+    });
   });
 
   app.use('/', router);
