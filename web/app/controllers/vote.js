@@ -27,20 +27,29 @@ module.exports = (app) => {
 
   const router = express.Router();
 
-  router.get('/voteup/:id',
-    ensureAuthenticated,
-    (req, res, next) => {
-
-
-      if (typeof (req.params.id) != 'undefined') {
-        // 1- Get the vote list
-        Dojos.findById(req.params.id, (err, docs) => {
-          console.log(docs)
-          for (let vote of docs.votes) {
-
-            // 2- Check if the user already voted
-            if (vote.gitlab_id == req.session.passport.user.gitlab_username) {
+  router.get(['/vote/:id'],
+  ensureAuthenticated,
+  (req, res, next) => {
+    
+    
+    if (typeof (req.params.id) != 'undefined') {
+      // 1- Get the vote list
+      Dojos.findById(req.params.id, (err, docs) => {
+        console.log(docs)
+        for (let vote of docs.votes) {
+          
+          // 2- Check if the user already voted
+          if (vote.gitlab_id == req.session.passport.user.gitlab_username) {
+              if (req.query.type == "up") {
+                console.log("UUUUUPPPPP--------------------------------------------------------");
+              } else if (req.query.type == "down") {
+                console.log("DDDOOOOWWWWNNNNN");
+                
+              }
               // 3a- if yes, redirect with message
+              Dojos.update({
+
+              })
               res.redirect('/newest?error=alreadyVotup')
               return
             }
@@ -50,7 +59,8 @@ module.exports = (app) => {
           // 3b- if not, add the user's vote
           docs.votes.push({
             vote_date: moment().toISOString(),
-            gitlab_id: req.session.passport.user.gitlab_username
+            gitlab_id: req.session.passport.user.gitlab_username,
+            type: req.query.type
           }) 
           Dojos.update({
             _id: req.params.id
