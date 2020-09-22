@@ -3,7 +3,7 @@
 A web site to provide an support to suggest and vote for dojo topics.
 
 
-## How To Dev
+## How To **Dev**
 To be able to develop this app, be sure to have `docker-compose`. Then,
   1. `git clone git@gitlab.com:nicolasreyomnd/dojo-vote.git`
   2. `docker-compose up`  
