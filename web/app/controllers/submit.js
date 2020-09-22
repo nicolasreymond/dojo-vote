@@ -39,9 +39,6 @@ module.exports = (app) => {
       console.log(req.body.description);
       console.log(req.body._id);
 
-    // if( req.body.uniqueid != req.user.tequila.uniqueid ){
-    //   console.log('to do: manage')
-    // }
 
     if (req.body.hiddenId != ''){
       req.body.edit_date = Date.now()
@@ -71,10 +68,8 @@ module.exports = (app) => {
   router.get(['/submit','/edit/:id'],
     ensureAuthenticated,
     (req, res, next) => {
-      //console.log(req.params.id);
-      //console.log(req.user.displayName);
       logg = () => {
-        if (typeof(req.session.passport) != 'undefined') {
+        if (typeof (req.session.passport) != 'undefined') {
           return req.session.passport.user.gitlab_username
         } else {
           return false

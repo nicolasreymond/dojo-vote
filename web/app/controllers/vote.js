@@ -41,9 +41,9 @@ module.exports = (app) => {
           // 2- Check if the user already voted
           if (vote.gitlab_id == req.session.passport.user.gitlab_username) {
               if (req.query.type == "up") {
-                console.log("UUUUUPPPPP--------------------------------------------------------");
+                //It an upvote
               } else if (req.query.type == "down") {
-                console.log("DDDOOOOWWWWNNNNN");
+                //It a downvote
                 
               }
               // 3a- if yes, redirect with message
