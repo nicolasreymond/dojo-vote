@@ -7,7 +7,7 @@ var GitLabStrategy = require('passport-gitlab2').Strategy
 const passport = require('passport')
 
 module.exports = (app) => {
-  
+
   // Simple route middleware to ensure user is authenticated.
   //   Use this route middleware on any resource that needs to be protected.  If
   //   the request is authenticated (typically via a persistent login session),
@@ -15,11 +15,11 @@ module.exports = (app) => {
   //   login page.
   function ensureAuthenticated(req, res, next) {
 
-    if (req.isAuthenticated()) { 
-      return next(); 
+    if (req.isAuthenticated()) {
+      return next();
     }
-    if(!req.session.bounceTo){ // already have a bounce destination
-      req.session.bounceTo=req.header('Referer') || '/'; 
+    if (!req.session.bounceTo) { // already have a bounce destination
+      req.session.bounceTo = req.header('Referer') || '/';
     }
     res.redirect('/auth/gitlab') // res.redirect('back');
 

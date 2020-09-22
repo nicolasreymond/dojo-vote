@@ -10,8 +10,13 @@ const DojoSchema = new Schema({
   public: String,
   type: String,
   description: String,
-  create_date: { type: Date },
-  edit_date: { type: Date, default: Date.now },
+  create_date: {
+    type: Date
+  },
+  edit_date: {
+    type: Date,
+    default: Date.now
+  },
   edits: [],
   votes: []
 });
