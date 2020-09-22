@@ -12,7 +12,6 @@ const UserSchema = new Schema({
   gitlab_name: String,
   gitlab_emails: {},
   gitlab_avatar_url: String,
-  telegram_username: String
 });
 
 UserSchema.plugin(findOrCreate)

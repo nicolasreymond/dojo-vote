@@ -5,7 +5,7 @@
   <div class="list-elements">
     <ol>
     {% for item in items %}
-      <li>{% include "partials/list-comment.nunjucks" %}
+      <li>{% include "partials/list-subject.nunjucks" %}
     {% else %}
       <li>This would display if the 'item' collection were empty
     {% endfor %}

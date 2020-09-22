@@ -1,0 +1,17 @@
+<div class="list-element">
+  <div class="element-header" id="element-{{ item['id'] }}">
+    <span class="element-title">{{ item.title }}</span>
+    <span class="element-point">{{ item.votes.length if item.votes.length else 0 }} points</span>
+  </div>
+  <div class="element-action">
+    submitted by
+    <span class="element-author">
+      <a href="/profile/{{ item.gitlab_username }}">
+        {{ item.gitlab_username }}
+      </a>
+    </span> on
+    <span class="element-date">
+      {{ item.create_date | date('YYYY-MM-DD HH:mm:ss') }}
+    </span>
+  </div>
+</div>
