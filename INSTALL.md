@@ -1,14 +1,11 @@
-# dojo-elections
+# How To **Install**
+  
+Tout d'abord connecter vous à votre machine virtuel avec ssh : `ssh user@adress`
 
-A web site to provide an support to suggest and vote for dojo topics.
+Ensuite, cloner le projet `git clone git@github.com:nicolasreymond/dojo-vote.git`
 
+Puis, naviguer dans le dossier fraichement crée : `cd dojo-vote`
 
-## How To **Install**
-  1. First connect on your VM via ssh.
-To be able to install this app, be sure to have `docker-compose` instaled on your VM. Then,
-  1. `git clone git@gitlab.com:epfl-dojo/dojo-elections.git`
-  2. `docker-compose up`  
-     Note: The first time you run this command, you might get an error:  
-     `web_1_c4243leetc42 | npm WARN tar ENOENT: no such file or directory, open '/usr/app/node_modules/.staging/prepend-http-d1961be1/package.json'`  
-     Just remove the `package-lock.json` in the web directory and try again.
-  3. Head to `http://locahost:3000` and enjoy!
+**Attention!!** Il vous faut inscrire votre token gitlab dans `express.js` ligne 34-35
+
+Et enfin lancer l'app avec `docker-compose up -d` 
